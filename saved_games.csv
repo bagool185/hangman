@@ -1,0 +1,2 @@
+player_name, score, secret_word, guessed_letters, characters_left
+test,0,word,[],5
