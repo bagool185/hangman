@@ -11,13 +11,9 @@ class Game
     @characters_left = 0
   end
 
-  # pick a random word from the wordlist or load saved scenario
-  def start
-    puts "Do you want to open one of your saved games?[Y/n]"
-    answer = STDIN.gets.downcase.chomp
+  def load_saved_game
 
-    if answer == "y"
-      saved_games = CSV.open "saved_games.csv", headers: true, header_converters: :symbol
+     saved_games = CSV.open "saved_games.csv", headers: true, header_converters: :symbol
       puts "Here are all the saved games. To pick one, write the index when prompted to: "
 
       index = 0
@@ -39,6 +35,14 @@ class Game
         @characters_left = csv[:characters_left]
       end
 
+  end
+
+  # pick a random word from the wordlist or load saved scenario
+  def start
+    puts "Do you want to open one of your saved games?[Y/n]"
+    answer = STDIN.gets.downcase.chomp
+
+    if answer == "y"
       play
     else
       File.foreach("wordlist.txt").each_with_index do |word, number|
@@ -70,6 +74,7 @@ class Game
   end
 
   def play
+    
     while !lose? && !win?
       display_letters
       puts "Pick a letter or write 'save' to save your progress: "

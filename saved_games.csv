@@ -1,2 +1,3 @@
 player_name, score, secret_word, guessed_letters, characters_left
 test,0,word,[],5
+bagool,0,gnostic,[],7
